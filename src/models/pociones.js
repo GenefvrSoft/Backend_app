@@ -1,7 +1,9 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../dbconfig");
+const { modeloIngredientes } = require('./ingredientes')
 
-const modeloPociones = sequelize.define('usuarios', {
+
+const modeloPociones = sequelize.define('pociones', {
     id: {
         primaryKey: true,
         autoIncrement: true,
@@ -13,8 +15,7 @@ const modeloPociones = sequelize.define('usuarios', {
     cantidad: DataTypes.INTEGER,
     categoria: DataTypes.STRING,
     imagen: DataTypes.STRING,
-    ingredientes_relacionados: DataTypes.STRING,
 });
 
-
+modeloPociones.Ingredientes = modeloPociones.belongsTo(modeloIngredientes)
 module.exports = { modeloPociones };
