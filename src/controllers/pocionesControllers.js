@@ -18,7 +18,7 @@ const obtenerPociones = async(req, res) => {
 
 const obtenerPocionesPorParametros = async(req, res) => {
     try {
-        const { nombre, descripcion, categoria } = req.query;
+        const { nombre, descripcion, cantidad } = req.query;
      
         const pociones = await modeloPociones.findAll({
             include: [
@@ -27,7 +27,7 @@ const obtenerPocionesPorParametros = async(req, res) => {
                 }
             ],
             where: {
-              [Op.or]: [{nombre}, {categoria}, {descripcion}]
+              [Op.or]: [{nombre}, {cantidad}, {descripcion}]
             }
           })
         res.json({pociones});
